@@ -4,8 +4,9 @@
   "description": "A Master Thesis project exploring new possibilities to open doors by using speech. The project is nicknamed The Ape Butler.",
   "main": "server",
   "scripts": {
-    "server": "node server/server.js",
+    "start": "node server/server.js",
     "stop": "killall node | exit 0",
+    "watch": {},
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,8 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "onchange": "^3.2.0"
   }
 }
