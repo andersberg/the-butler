@@ -23,9 +23,11 @@ router.use(function(req, res, next) {
 
 // Browser routes
 router.get('/', function(req, res) {
-    res.send('<h1>Welcome to The Ape Butler Server!</h1>');
+    // res.send('<h1>Welcome to The Ape Butler Server!</h1>');
+    
 });
-server.use('/', router);
+server.use('/', express.static('client'));
+// server.use('/', express.static(path.join(__dirname, 'client')));
 
 // Api Routes
 apiRouter.get('/', function(req, res) {
