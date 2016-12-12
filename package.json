@@ -2,9 +2,10 @@
   "name": "the-ape-butler",
   "version": "1.0.0",
   "description": "A Master Thesis project exploring new possibilities to open doors by using speech. The project is nicknamed The Ape Butler.",
-  "main": "index.js",
+  "main": "server",
   "scripts": {
     "server": "node server/server.js",
+    "stop": "killall node | exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
