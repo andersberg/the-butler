@@ -18,22 +18,27 @@ server.use(bodyParser.json())
 // =============================================================================
 
 // Middleware
-router.use(function(req, res, next) {
-    console.log('Connection detected: ' + req.method + ' on ' + req.url)
+router.use(function(request, response, next) {
+    console.log('Connection detected: ' + request.method + ' on ' + request.url)
     next()
 })
 
 // Browser routes
-router.get('/', function(req, res) {
-    // res.send('<h1>Welcome to The Ape Butler Server!</h1>')
+router.get('/', function(request, response) {
+    // response.send('<h1>Welcome to The Ape Butler Server!</h1>')
     
 })
 server.use('/', express.static('client'))
 // server.use('/', express.static(path.join(__dirname, 'client')))
 
 // Api Routes
-apiRouter.get('/', function(req, res) {
-    res.send('<h1>Welcome to The Ape Butler API!</h1>')
+apiRouter.get('/', function(request, response) {
+    response.send('<h1>Welcome to The Ape Butler API!</h1>')
+})
+
+apiRouter.post(`/`, (request, response) => {
+    console.log(request.body.message)
+    response.json({ message: `Welcome to The Butler API`})
 })
 
 server.use('/api', apiRouter)
