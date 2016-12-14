@@ -1,0 +1,43 @@
+{
+    // Typography
+    "editor.fontFamily": "Source Code Pro Light, DejaVu Sans Mono",
+    "editor.fontSize": 13,
+    "editor.lineHeight": 23,
+
+    // Editor
+    "editor.cursorStyle": "line",
+    "editor.rulers": [],
+    "editor.wrappingColumn": -1,
+    "editor.renderWhitespace": true,
+    "editor.renderIndentGuides": true,
+    "editor.folding": true,
+    "diffEditor.renderSideBySide": true,
+    "workbench.editor.enablePreview": true,
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "explorer.openEditors.visible": 1,
+    "telemetry.enableTelemetry": false,
+    "html.format.wrapLineLength": 0,
+    "telemetry.enableCrashReporter": false,
+
+    // Configure glob patterns for excluding files and folders in searches. Inherits all glob patterns from the file.exclude setting.
+    "search.exclude": {
+        "**/.git": false,
+        "**/.gitignore": false
+    },
+    "attrsSorter.order": [
+        "selected",
+        "id",
+        "class"
+    ],
+
+    // Enables or disables all validations
+    "css.validate": true,
+    // Control whether stylelint is enabled for CSS/SCSS files or not.
+    "stylelint.enable": true,
+    // Controls VSCode's JavaScript validation. If set to false both syntax and semantic validation is disabled
+    "javascript.validate.enable": true,
+    // Control whether eslint is enabled for JavaScript files or not.
+    "eslint.enable": true,
+    "window.zoomLevel": 0,
+    "vsicons.dontShowNewVersionMessage": true
+}
