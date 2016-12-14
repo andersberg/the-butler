@@ -2,14 +2,22 @@
 
 // BASE SETUP
 // =============================================================================
-import express, {Router} from 'express'
+import express, { Router } from 'express'
 import bodyParser from 'body-parser'
+import aiRequest from './../server/ai-request'
+import uuid from 'node-uuid'
 
-const app           = new express()
-const port          = process.env.PORT || 8080
-const router        = new Router()
-const apiRouter     = new Router()
+const app = new express()
+const port = process.env.PORT || 8080
+const router = new Router()
 
+// API.AI Config
+const postURL = `https://api.api.ai/v1/query?v=20150910`
+const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
+const sessionId = uuid.v1()
+
+var message = null
+// let message = 'Anybody home?'
 
 // BODY PARSER SETUP
 // =============================================================================
@@ -20,31 +28,31 @@ app.use(bodyParser.json())
 // =============================================================================
 
 // Middleware
-router.use(function(request, response, next) {
+app.use(function (request, response, next) {
     console.log('Connection detected: ' + request.method + ' on ' + request.url)
     next()
 })
 
-// Browser routes
-router.get('/', function(request, response) {
-    // response.send('<h1>Welcome to The Ape Butler Server!</h1>')
-    
-})
+// Browser route
 app.use('/', express.static('client'))
 // app.use('/', express.static(path.join(__dirname, 'client')))
 
 
 // Api Routes
-apiRouter.get('/', function(request, response) {
+router.get('/', function (request, response) {
     response.send('<h1>Welcome to The Ape Butler API!</h1>')
 })
 
-apiRouter.post(`/`, (request, response) => {
-    console.log(request.body.message)
-    response.json({ message: `Welcome to The Butler API`})
-})
+router.post(`/`, (request, response) => {
+    response.json({ message: `Welcome to The Butler API` })
 
-app.use('/api', apiRouter)
+    message = request.body.message
+    console.log(`Message from web client: ` + message)
+
+    // API.AI REQUEST
+    aiRequest(postURL, accessToken, sessionId, message);
+})
+app.use('/api', router)
 
 app.listen(port)
 console.log('The Butler Server is running on port: ' + port)
