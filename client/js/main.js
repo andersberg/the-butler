@@ -4,7 +4,7 @@ const input     = document.getElementById(`input`)
 function sendPost(event) {
     event.preventDefault()
     var message = input.value
-    console.log(message)
+    console.log(`Sending to server: ` + message)
 
     var request = new Request(`/api`, {
         method: `POST`,
@@ -24,7 +24,7 @@ function sendPost(event) {
             return response.json();
         })
         .then((response) => {
-            console.log(response.message);
+            console.log(`From server: ` + response.message);
         })
 
 }
