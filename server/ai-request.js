@@ -18,9 +18,8 @@ function aiRequest(postURL, accessToken, sessionId, message) {
                 "lang": "en",
                 "sessionId": sessionId
             }
-        })
-        .on(`response`, (response) => {
-            console.log(`Response from Api.ai: ` + response.statusCode)
+        }, function(error, response, body) {
+            console.log(body)
         })
 }
 
