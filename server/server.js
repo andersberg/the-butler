@@ -14,8 +14,7 @@ const router = new Router()
 // API.AI Config
 const postURL = `https://api.api.ai/v1/query?v=20150910`
 const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
-const sessionId = uuid.v1()
-
+var sessionId = uuid.v1()
 var message = null
 // let message = 'Anybody home?'
 
