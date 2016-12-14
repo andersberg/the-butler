@@ -20,7 +20,7 @@ function aiRequest(postURL, accessToken, sessionId, message) {
             }
         })
         .on(`response`, (response) => {
-            console.log(`ai-request response: ` + response.statusCode)
+            console.log(`Response from Api.ai: ` + response.statusCode)
         })
 }
 
