@@ -5,16 +5,16 @@
 import express, { Router } from 'express'
 import bodyParser from 'body-parser'
 import aiRequest from './../server/ai-request'
-import uuid from 'node-uuid'
+// import uuid from 'node-uuid'
 
 const app = new express()
 const port = process.env.PORT || 8080
 const router = new Router()
 
 // API.AI Config
-const postURL = `https://api.api.ai/v1/query?v=20150910`
-const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
-var sessionId = uuid.v1()
+// const postURL = `https://api.api.ai/v1/query?v=20150910`
+// const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
+// var sessionId = uuid.v1()
 var message = null
 // let message = 'Anybody home?'
 
@@ -49,7 +49,7 @@ router.post(`/`, (request, response) => {
     console.log(`Message from web client: ` + message)
 
     // API.AI REQUEST
-    aiRequest(postURL, accessToken, sessionId, message);
+    aiRequest(message);
 })
 app.use('/api', router)
 

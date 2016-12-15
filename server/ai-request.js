@@ -1,8 +1,18 @@
 // API.AI REQUST
 // =============================================================================
-var request = require('request')
 
-function aiRequest(postURL, accessToken, sessionId, message) {
+import request from 'request'
+import uuid from 'node-uuid'
+
+
+
+function aiRequest(message) {
+
+    // API.AI Config
+    const postURL = `https://api.api.ai/v1/query?v=20150910`
+    const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
+    var sessionId = uuid.v1()
+
     request
         .post({
             url: postURL,
@@ -19,6 +29,7 @@ function aiRequest(postURL, accessToken, sessionId, message) {
                 "sessionId": sessionId
             }
         }, function(error, response, body) {
+            // console.log(body.result.parameters.givenname + ` ` + body.result.parameters.lastname)
             console.log(body)
         })
 }
