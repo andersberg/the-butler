@@ -52,10 +52,11 @@ router.post(`/`, (request, response) => {
     response.json({ message: `Welcome to The Butler API` })
 
     message = request.body.message
-    console.log(`Message from web client: ` + message)
+    console.log(`Web Client: ` + message)
 
     // API.AI REQUEST
-    aiRequest(message);
+    aiRequest(message)
+    
 })
 app.use('/api', router)
 

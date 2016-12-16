@@ -50,3 +50,11 @@ function recordSpeech(event) {
 }
 initSpeech.addEventListener(`mouseup`, recordSpeech,false)
 
+// FOR DEBUG
+function sendPost(event) {
+    event.preventDefault()
+    var transcript = input.value
+    console.log(transcript)
+    postToServer(transcript)
+}
+sendBtn.addEventListener(`click`, sendPost, false)
