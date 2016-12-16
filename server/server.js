@@ -59,12 +59,12 @@ router.post(`/`, (request, response) => {
 })
 app.use('/api', router)
 
-io.on('connection', (socket) => {
-    socket.emit('news', { hello: 'wordl'})
-    socket.on('my other event', (data) => {
-        console.log(data)
-    })
-})
+// io.on('connection', (socket) => {
+//     socket.emit('news', { hello: 'wordl'})
+//     socket.on('my other event', (data) => {
+//         console.log(data)
+//     })
+// })
 
 app.listen(port)
 console.log('The Butler Server is running on port: ' + port)
