@@ -32,8 +32,9 @@ app.use(function (request, response, next) {
     next()
 })
 
-// Browser route
+// Browser paths
 app.use('/', express.static('client'))
+// app.use('/record', express.static('client/record.html'))
 // app.use('/', express.static(path.join(__dirname, 'client')))
 
 

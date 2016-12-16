@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Recorder</title>
+    <meta name="description" content="The Ape Butler - Web Client">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!--<link rel="stylesheet" href="css/main.css">-->
+</head>
+
+<body>
+
+    <h1>Recorder</h1>
+
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <!--<script src="../../socket.io/socket.io.js"></script>-->
+    <script>
+        var socket = io.connect('http://localhost:8080/record');
+        socket.on('news', function (data) {
+            console.log(data);
+            socket.emit('my other event', { my: 'data' });
+        });
+    </script>
+
+    <script>
+            var session = {
+                audio: true,
+                video: false
+            };
+
+            var recordRTC = null;
+
+            function initializeRecorder(stream) {
+                var audioContext = window.AudioContext;
+                var context = new audioContext();
+                var audioInput = context.createMediaStreamSource(stream);
+                var bufferSize = 2048;
+
+                // create a js node
+                var recorder = context.createJavaScriptNde(bufferSize, 1, 1);
+                // specify the processing function
+                recorder.onaudioprocess = recorderProcess;
+                // connect stream to recorder
+                audioInput.connect(recorder);
+                // connect recorder to previous destination
+                recorder.connect(context.destination);
+            }
+
+            function recorderProcess(event) {
+                var left = event.inputBuffer.getChannelData(0);
+            }
+
+
+
+            navigator.getUserMedia(session, initializeRecorder, onError);
+
+
+
+
+
+    </script>
+</body>
+
+</html>

@@ -18,12 +18,26 @@
     <h1>Hello world!</h1>
     <p>Welcome to the Ape Butler web client</p>
 
+    <h3>Speech Recognition</h3>
+
+    <section id="speech-recognition">
+        <button id="initSpeech">Start Speech Recognition</button>
+        <br>
+        <textarea id="speechOutput" cols="80" rows="5"></textarea>
+    </section>
+    <hr>
+
     <form>
         <input id="input" type="text" placeholder="Type here..." value="I am visiting Anders Berg">
         <button id="sendBtn">Send</button>
     </form>
 
+    <hr>
+
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="js/record.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 
 </html>
