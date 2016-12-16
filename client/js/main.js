@@ -34,18 +34,19 @@ sendBtn.addEventListener(`click`, sendPost, false)
 function startRec(event) {
     var recognition = new webkitSpeechRecognition()
     // Speech Recognition Config
-    recognition.lang = `sv`
-    recognition.continuous = true
-    recognition.interimResults = true
+    recognition.lang = `sv` // Swedish is best for
+    // recognition.continuous = true
 
     recognition.onresult = (event) => {
         var textarea      = document.getElementById(`speechOutput`)
-        for (var i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-                console.log(event.results[i][0].transcript)
-                textarea.value += event.results[i][0].transcript
-            }
-        }
+        console.log(event.results[0][0].transcript)
+        textarea.value += event.results[0][0].transcript
+        // for (var i = event.resultIndex; i < event.results.length; ++i) {
+        //     console.log(event.results)
+        //     if (event.results[i].isFinal) {
+        //         console.log(event.results[i][0].transcript)
+        //     }
+        // }
     }
 
     recognition.start()
