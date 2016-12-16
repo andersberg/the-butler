@@ -11,6 +11,11 @@ const app = new express()
 const port = process.env.PORT || 8080
 const router = new Router()
 
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+// var server = require('http').Server(app);
+
 // API.AI Config
 // const postURL = `https://api.api.ai/v1/query?v=20150910`
 // const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
@@ -53,6 +58,13 @@ router.post(`/`, (request, response) => {
     aiRequest(message);
 })
 app.use('/api', router)
+
+io.on('connection', (socket) => {
+    socket.emit('news', { hello: 'wordl'})
+    socket.on('my other event', (data) => {
+        console.log(data)
+    })
+})
 
 app.listen(port)
 console.log('The Butler Server is running on port: ' + port)
