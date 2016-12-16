@@ -1,13 +1,13 @@
 const sendBtn       = document.getElementById(`sendBtn`)
 const input         = document.getElementById(`input`)
 const initSpeech    = document.getElementById(`initSpeech`)
+const speechOutput  = document.getElementById(`speechOutput`)
+let transcript      = null
 
-function sendPost(event) {
-    event.preventDefault()
-    var message = input.value
-    console.log(`Sending to server: ` + message)
-
-    var request = new Request(`/api`, {
+function postToServer(message) {
+    console.log(`Sending this: ` + message)
+    
+    let request = new Request(`/api`, {
         method: `POST`,
         mode: `same-origin`, // alt. `cors`
         redirect: `follow`,
@@ -21,34 +21,32 @@ function sendPost(event) {
 
     fetch(request)
         .then((response) => {
-            // console.log(`Success!`)
-            return response.json();
+            return response.json()
         })
         .then((response) => {
-            console.log(`From server: ` + response.message);
+            console.log(`Server: ` + response.message)
         })
-
 }
-sendBtn.addEventListener(`click`, sendPost, false)
 
-function startRec(event) {
-    var recognition = new webkitSpeechRecognition()
-    // Speech Recognition Config
-    recognition.lang = `sv` // Swedish is best for
-    // recognition.continuous = true
+function recordSpeech(event) {
+    let recognition = new webkitSpeechRecognition();
+
+    // Speech recognition config
+    recognition.lang = `sv` // Swedish for best recognition of swedish accents
+    // Consider enabling for richer feedback to user
+    // recognition.interimResults = true
 
     recognition.onresult = (event) => {
-        var textarea      = document.getElementById(`speechOutput`)
         console.log(event.results[0][0].transcript)
-        textarea.value += event.results[0][0].transcript
-        // for (var i = event.resultIndex; i < event.results.length; ++i) {
-        //     console.log(event.results)
-        //     if (event.results[i].isFinal) {
-        //         console.log(event.results[i][0].transcript)
-        //     }
-        // }
+        
+        transcript = event.results[0][0].transcript
+        speechOutput.value = transcript
+
+
+        postToServer(transcript)
     }
 
     recognition.start()
 }
-initSpeech.addEventListener(`mouseup`, startRec, false)
+initSpeech.addEventListener(`mouseup`, recordSpeech,false)
+
