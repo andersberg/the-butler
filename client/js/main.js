@@ -24,7 +24,7 @@ function postToServer(message) {
             return response.json()
         })
         .then((response) => {
-            console.log(`Server: ` + response.message)
+            console.log(`Server: ` + JSON.stringify(response))
         })
 }
 
