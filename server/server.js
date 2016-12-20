@@ -74,8 +74,6 @@ router.post(`/`, (request, response) => {
         },
     }).then(function (res) {
         return res.json();
-    }).then(() => {
-        console.log(`tjoho!`)
     }).then(function (json) {
         aiResponse = json.result.parameters
         console.log(`Response from API.ai:` + JSON.stringify(aiResponse))
