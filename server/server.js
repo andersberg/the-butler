@@ -49,14 +49,39 @@ router.get('/', function (request, response) {
 })
 
 router.post(`/`, (request, response) => {
-    response.json({ message: `Welcome to The Butler API` })
+    // response.json({ message: `Welcome to The Butler API` })
 
     message = request.body.message
     console.log(`Web Client: ` + message)
 
     // API.AI REQUEST
-    aiRequest(message)
-    
+    // aiRequest(message, app)
+
+    let requestBody = {
+        "query": [
+            message
+        ],
+        "timezone": "Europe/Stockholm",
+        "lang": "en",
+        "sessionId": sessionId
+    }
+
+    fetch(postURL, {
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+            'Authorization': 'Bearer ' + accessToken
+        },
+    }).then(function (res) {
+        return res.json();
+    }).then(function (json) {
+        // console.log(json.result.parameters.givenname);
+        aiResponse = json.result.parameters
+        console.log(aiResponse)
+        response.json(aiResponse)
+    })
+
 })
 app.use('/api', router)
 
@@ -67,5 +92,6 @@ app.use('/api', router)
 //     })
 // })
 
+createServer(app)
 app.listen(port)
 console.log('The Butler Server is running on port: ' + port)
