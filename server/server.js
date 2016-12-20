@@ -5,31 +5,29 @@
 import express, { Router } from 'express'
 import { createServer } from 'http'
 import bodyParser from 'body-parser'
-// import aiRequest from './../server/ai-request'
 import uuid from 'node-uuid'
+import fetch from 'node-fetch'
 
 const app = new express()
 const port = process.env.PORT || 8080
 const router = new Router()
 
-
-
-// var io = require('socket.io')(server);
-// var aiRequest = require('request');
-
-var fetch = require('node-fetch');
-
 // API.AI Config
+// Add security for prod-env
 const postURL = `https://api.api.ai/v1/query?v=20150910`
 const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
-var sessionId = uuid.v1()
-var message = null
-var aiResponse = null
-// let message = 'Anybody home?'
+let sessionId = uuid.v1()
+let message = null
+let aiResponse = null
+
+// CREATE & RUN SEVER
+// =============================================================================
+createServer(app)
+app.listen(port)
+console.log('The Butler Server is running on port: ' + port)
 
 // BODY PARSER SETUP
 // =============================================================================
-createServer(app)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
@@ -44,9 +42,6 @@ app.use(function (request, response, next) {
 
 // Browser paths
 app.use('/', express.static('client'))
-// app.use('/record', express.static('client/record.html'))
-// app.use('/', express.static(path.join(__dirname, 'client')))
-
 
 // Api Routes
 router.get('/', function (request, response) {
@@ -54,12 +49,11 @@ router.get('/', function (request, response) {
 })
 
 router.post(`/`, (request, response) => {
-    // response.json({ message: `Welcome to The Butler API` })
-
     message = request.body.message
     console.log(`Web Client: ` + message)
 
     // API.AI REQUEST
+    // =============================================================================
     // aiRequest(message, app)
 
     let requestBody = {
@@ -80,23 +74,13 @@ router.post(`/`, (request, response) => {
         },
     }).then(function (res) {
         return res.json();
+    }).then(() => {
+        console.log(`tjoho!`)
     }).then(function (json) {
-        // console.log(json.result.parameters.givenname);
         aiResponse = json.result.parameters
-        console.log(aiResponse)
+        console.log(`Response from API.ai:` + JSON.stringify(aiResponse))
         response.json(aiResponse)
     })
 
 })
 app.use('/api', router)
-
-// io.on('connection', (socket) => {
-//     socket.emit('news', { hello: 'wordl'})
-//     socket.on('my other event', (data) => {
-//         console.log(data)
-//     })
-// })
-
-createServer(app)
-app.listen(port)
-console.log('The Butler Server is running on port: ' + port)
