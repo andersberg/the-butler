@@ -3,28 +3,33 @@
 // BASE SETUP
 // =============================================================================
 import express, { Router } from 'express'
+import { createServer } from 'http'
 import bodyParser from 'body-parser'
-import aiRequest from './../server/ai-request'
-// import uuid from 'node-uuid'
+// import aiRequest from './../server/ai-request'
+import uuid from 'node-uuid'
 
 const app = new express()
 const port = process.env.PORT || 8080
 const router = new Router()
 
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
 
-// var server = require('http').Server(app);
+
+// var io = require('socket.io')(server);
+// var aiRequest = require('request');
+
+var fetch = require('node-fetch');
 
 // API.AI Config
-// const postURL = `https://api.api.ai/v1/query?v=20150910`
-// const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
-// var sessionId = uuid.v1()
+const postURL = `https://api.api.ai/v1/query?v=20150910`
+const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
+var sessionId = uuid.v1()
 var message = null
+var aiResponse = null
 // let message = 'Anybody home?'
 
 // BODY PARSER SETUP
 // =============================================================================
+createServer(app)
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
