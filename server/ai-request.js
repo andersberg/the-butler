@@ -38,9 +38,8 @@ function aiRequest(message) {
 
     function callback(error, response, body) {
         // console.log(`API.ai: ` + body.result.parameters.givenname + ` ` + body.result.parameters.lastname)
-        let result = body.result
+        let result = body
         console.log(result)
-        return result
     }
 
     let options = {
