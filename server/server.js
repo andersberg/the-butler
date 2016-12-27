@@ -80,10 +80,54 @@ router.post(`/`, (request, response) => {
     }).then(function (res) {
         return res.json();
     }).then(function (json) {
-        aiResponse = json.result.parameters
-        console.log(`Response from API.ai:` + JSON.stringify(aiResponse))
-        response.json(aiResponse)
+        // aiResponse = json.result.parameters
+        // console.log(`Response from API.ai: \n` + JSON.stringify(aiResponse))
+
+        // let givenname = json.result.parameters.givenname
+        // let lastname = json.result.parameters.lastname
+        // console.log(givenname + ` ` + lastname)
+
+        let aiResponse = {
+            'givenname': json.result.parameters.givenname,
+            'lastname': json.result.parameters.lastname,
+            'fullname': json.result.parameters.givenname + ' ' + json.result.parameters.lastname
+        }
+
+        console.log(`API.ai: ` + aiResponse.fullname + `\n`)
+
+        // slackWebClient.chat.postMessage(`@anders`, `Hello from The Butler Bot`, (err, res) => {
+        //     if (err) {
+        //         console.log('Error: ' + err)
+        //     } else {
+        //         console.log('Message sent: ' + res)
+        //     }
+        // })
+
+        slackWebClient.users.list(function (err, users) {
+            if (err) {
+                console.log('Error:', err + `\n`);
+            } else {
+                console.log('Slack API:')
+                console.log(`Matching: ` + aiResponse.fullname + `\n`);
+                for (var i in users.members) {
+                    if (users.members[i].real_name === aiResponse.fullname) {
+                        let slackName = users.members[i].real_name
+                        console.log(`Found match: \n` + slackName + ` ID: ` + users.members[i].id)
+                        // console.log(`Found match! \n`)
+                        response.json(slackName)
+
+
+
+
+                        return
+                    }
+                }
+            }
+        });
+
+        // response.json(slackName)
     })
 
 })
 app.use('/api', router)
+
