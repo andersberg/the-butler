@@ -7,6 +7,7 @@ import { createServer } from 'http'
 import bodyParser from 'body-parser'
 import uuid from 'node-uuid'
 import fetch from 'node-fetch'
+import slackClient, { WebClient } from '@slack/client'
 
 const app = new express()
 const port = process.env.PORT || 8080
@@ -19,6 +20,10 @@ const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
 let sessionId = uuid.v1()
 let message = null
 let aiResponse = null
+
+// Slackbot config
+const slackToken = `xoxb-121768532438-soYL4i93cDnfs8j1QYqs3jNC`
+const slackWebClient = new WebClient(slackToken)
 
 // CREATE & RUN SEVER
 // =============================================================================
