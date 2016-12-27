@@ -5,7 +5,7 @@ const speechOutput  = document.getElementById(`speechOutput`)
 let transcript      = null
 
 function postToServer(message) {
-    console.log(`Sending this: ` + message)
+    // console.log(`Sending this: \n` + message)
     
     let request = new Request(`/api`, {
         method: `POST`,
@@ -24,7 +24,7 @@ function postToServer(message) {
             return response.json()
         })
         .then((response) => {
-            console.log(`Server: ` + JSON.stringify(response))
+            console.log(`Server: \n` + JSON.stringify(response))
         })
 }
 
@@ -54,7 +54,7 @@ initSpeech.addEventListener(`mouseup`, recordSpeech,false)
 function sendPost(event) {
     event.preventDefault()
     var transcript = input.value
-    console.log(`Speech transcipt: ` + transcript)
+    // console.log(`Speech transcipt: \n` + transcript)
     postToServer(transcript)
 }
 sendBtn.addEventListener(`click`, sendPost, false)
