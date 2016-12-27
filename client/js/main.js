@@ -24,7 +24,7 @@ function postToServer(message) {
             return response.json()
         })
         .then((response) => {
-            console.log(`Server: \n` + JSON.stringify(response))
+            console.log(`Server: \n` + JSON.stringify(response.real_name))
         })
 }
 
