@@ -41,7 +41,7 @@ app.use(bodyParser.json())
 
 // Middleware
 app.use(function (request, response, next) {
-    console.log('Connection detected: ' + request.method + ' on ' + request.url)
+    // console.log('Connection detected!')
     next()
 })
 
@@ -55,7 +55,7 @@ router.get('/', function (request, response) {
 
 router.post(`/`, (request, response) => {
     message = request.body.message
-    console.log(`Web Client: ` + message)
+    console.log(`From Web Client: ` + message + `\n`)
 
     // API.AI REQUEST
     // =============================================================================
