@@ -111,14 +111,18 @@ router.post(`/`, (request, response) => {
                 console.log(`Matching: ` + aiResponse.fullname + `\n`);
                 for (var i in users.members) {
                     if (users.members[i].real_name === aiResponse.fullname) {
-                        let slackName = users.members[i].real_name
-                        console.log(`Found match: \n` + slackName + ` ID: ` + users.members[i].id)
-                        // console.log(`Found match! \n`)
-                        response.json(slackName)
+                        let slackUser = users.members[i]
+                        console.log(`Found match: \n` + slackUser.real_name + `, ID: ` + slackUser.id)
+                        
+                        slackWebClient.chat.postMessage(slackUser.id, `Hello ` + slackUser.real_name + `! You have a guest!`, (error, response) => {
+                            if (error) {
+                                console.error(`Error: ` + error)
+                            } else {
+                                console.log(`Message sent: ` + JSON.stringify(response))
+                            }
+                        })
 
-
-
-
+                        response.json(slackUser)
                         return
                     }
                 }
