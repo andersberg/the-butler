@@ -8,7 +8,8 @@
     "stop": "killall node | exit 0",
     "watch": {},
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "jshint *.js"
+    "lint": "jshint *.js",
+    "serve": "browser-sync start --server --port 8080"
   },
   "babel": {
     "presets": [
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/apegroup/the-ape-butler#readme",
   "dependencies": {
+    "@slack/client": "^3.8.1",
     "babel-cli": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-polyfill": "^6.16.0",
@@ -39,12 +41,11 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "node-fetch": "^1.6.3",
-    "node-uuid": "^1.4.7",
-    "socket.io": "^1.7.2",
-    "socket.io-client": "^1.4.6"
+    "node-uuid": "^1.4.7"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "browser-sync": "^2.18.5",
     "jshint": "latest",
     "nodemon": "^1.11.0",
     "onchange": "^3.2.0",
