@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <h1>Debug for The Ape Butler</h1>
+    <form>
+        <label for="input">Debug</label>
+        <br>
+        <input id="input" type="text" placeholder="Type here..." value="I am visiting Anders Berg">
+        <button id="sendBtn">Send</button>
+    </form>
+
+    <script>
+
+        const sendBtn = document.getElementById(`sendBtn`)
+        const input = document.getElementById(`input`)
+        let transcript = null
+
+        function postToServer(message) {
+            // console.log(`Sending this: \n` + message)
+
+            let request = new Request(`/api`, {
+                method: `POST`,
+                mode: `same-origin`, // alt. `cors`
+                redirect: `follow`,
+                body: JSON.stringify({
+                    message: message
+                }),
+                headers: new Headers({
+                    "Content-Type": `application/json`
+                })
+            })
+
+            fetch(request)
+                .then((response) => {
+                    return response.json()
+                })
+                .then((response) => {
+                    console.log(`Server: \n` + JSON.stringify(response.real_name))
+                })
+        }
+
+        // FOR DEBUG
+        function sendPost(event) {
+            event.preventDefault()
+            var transcript = input.value
+            // console.log(`Speech transcipt: \n` + transcript)
+            postToServer(transcript)
+        }
+        sendBtn.addEventListener(`click`, sendPost, false)
+    </script>
+</body>
+
+</html>

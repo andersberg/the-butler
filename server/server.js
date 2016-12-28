@@ -48,6 +48,7 @@ app.use(function (request, response, next) {
 
 // Browser paths
 app.use('/', express.static('client'))
+app.use('/debug', express.static('client/debug.html'))
 app.use('/bower_components', express.static('bower_components'));
 
 // Api Routes
