@@ -2,14 +2,20 @@
     <template>
         <style>
         :host {
-
+            @apply(--flex-row);
         }
         
         button {
-            background-color: #68C7BE;
+            flex-grow: 1;
+            height: 7.2rem;
+            background-color: var(--primary-color);
             border: none;
-            border-radius: 4px;
-            color: #FFFFFF;
+            border-radius: 5rem;
+            color: var(--white);
+        }
+        
+        :host button ::content {
+            @apply(--button-text);
         }
         </style>
 
