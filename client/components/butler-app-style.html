@@ -1,22 +1,64 @@
 <dom-module id="butler-app-style">
     <template>
         <style>
-            @keyframes fade {
-                from {
-                    opacity: 0;
-                }
-            }
-
             :host {
+                /* LAYOUT */
+                --flex-row: {
+                    display: flex;
+                    position: relative;
+                    box-sizing: border-box;
+                    flex-direction: row;
+                }
+
+                --flex-column: {
+                    display: flex;
+                    position: relative;
+                    box-sizing: border-box;
+                    flex-direction: column;
+                }
+
+                /* COLORS */
                 --primary-color: #68C7BE;
                 --secondary-color: #232730;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: nowrap;
-                flex-grow: 1;
-            }
+                --white: #FFFFFF;
+                --light-grey: #9b9b9b;
+                
+                /* TYPOGRAPHY */
+                --font: 'Source Sans Pro', sans-serif;
+                --font-weight-normal: 400;
+                --font-weight-bold: 700;
+                --font-size-xsmall: 2.3rem;
+                --font-size-small: 2.6rem;
+                --font-size-medium: 3.6rem;
+                --font-size-large: 4.8rem;
+                --font-size-xlarge: 10.5rem;
+                --font-letter-spacing: 0.15rem;
 
-            
+                --title-text: {
+                    font-family: var(--font);
+				    font-size: var(--font-size-xlarge);
+				    font-weight: var(--font-weight-bold);
+                    font-style: normal;
+                    letter-spacing: var(--font-letter-spacing);
+                }
+                
+                --body-text: {
+                    font-family: var(--font);
+				    font-size: var(--font-size-medium);
+				    font-weight: var(--font-weight-normal);
+                    font-style: normal;
+                }
+                
+                --button-text: {
+                    font-family: var(--font);
+				    font-size: var(--font-size-small);
+				    font-weight: var(--font-weight-normal);
+                    font-style: normal;
+                    letter-spacing: var(--font-letter-spacing);
+                    text-transform: uppercase;
+                }
+                
+            }
         </style>
-    </template>
+</template>
 </dom-module>

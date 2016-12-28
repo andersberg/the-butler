@@ -1,11 +1,13 @@
 <dom-module id="butler-app">
-    
+    <link rel="import" href="butler-app-style.html">
+
     <template>
+        <style include="butler-app-style"></style>
         <style>
-      :host {
-        display: block;
-      }
-    </style>
+            :host {
+                display: block;
+            }
+        </style>
 
     <app-container>
         <iron-pages selected="0">
@@ -22,7 +24,7 @@
     Polymer({
 
         is: 'butler-app',
-
+        
         listeners: {
             'nextView': '_showNextView',
             'resetViews': '_resetViews'
