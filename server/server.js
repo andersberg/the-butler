@@ -23,13 +23,14 @@ let aiResponse = null
 
 // Slackbot config
 const slackToken = `xoxb-121768532438-soYL4i93cDnfs8j1QYqs3jNC`
-const slackWebClient = new WebClient(slackToken)
+const slackBotName = `The Ape Butler`
+const slackWebClient = new WebClient(slackToken, slackBotName)
 
 // CREATE & RUN SEVER
 // =============================================================================
 createServer(app)
 app.listen(port)
-console.log('The Butler Server is running on port: ' + port)
+console.log('The Butler Server is running on port: ' + port + `\n`)
 
 // BODY PARSER SETUP
 // =============================================================================
