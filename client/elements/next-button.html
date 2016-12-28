@@ -13,6 +13,11 @@
             border-radius: 5rem;
             color: var(--white);
         }
+
+        :host button:focus, :host button:hover {
+            outline: none;
+            border: 0.3rem solid black !important;
+        }
         
         :host button ::content {
             @apply(--button-text);
