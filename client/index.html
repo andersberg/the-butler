@@ -7,8 +7,11 @@
     <title>The Ape Butler - Web Client</title>
     <meta name="description" content="The Ape Butler - Web Client">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
 
-    
+    <!--<link rel="manifest" href="/manifest.json">-->
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <!-- Include Web Components JS -->
     <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
@@ -28,34 +31,26 @@
     <link rel="import" href="elements/app-container.html">
     <link rel="import" href="elements/next-button.html">
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i" rel="stylesheet">
+
     
+    <style>
+        /* RESET DEFAULT CSS */
+        html {
+            font-size: 10px;
+        }
+        body {
+            margin: 0;
+        }
+        h1 {
+            margin: 0;
+        }
+    </style>
 </head>
 
 <body>
     <butler-app></butler-app>
-    <!--<h1>Hello world!</h1>
-    <p>Welcome to the Ape Butler web client</p>
-
-    <h3>Speech Recognition</h3>
-
-    <section id="speech-recognition">
-        <button id="initSpeech">Start Speech Recognition</button>
-        <br>
-        <textarea id="speechOutput" cols="80" rows="5"></textarea>
-    </section>
-    <hr>
-
-    <form>
-        <label for="input">Debug</label>
-        <br>
-        <input id="input" type="text" placeholder="Type here..." value="I am visiting Anders Berg is he in?">
-        <button id="sendBtn">Send</button>
-    </form>
-
-    <hr>
-    <script src="js/main.js"></script>-->
-
 </body>
 
 </html>
