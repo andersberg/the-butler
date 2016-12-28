@@ -1,21 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>The Ape Butler - Web Client</title>
     <meta name="description" content="The Ape Butler - Web Client">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1">
+
+    
+
+    <!-- Include Web Components JS -->
+    <script src="../../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    
+     <!-- Include Polymer Components -->
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+    <link rel="import" href="elements/butler-app.html">
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-    <!--<link rel="stylesheet" href="css/main.css">-->
+    
 </head>
 
 <body>
-
-    <h1>Hello world!</h1>
+    <butler-app></butler-app>
+    <!--<h1>Hello world!</h1>
     <p>Welcome to the Ape Butler web client</p>
 
     <h3>Speech Recognition</h3>
@@ -35,10 +43,7 @@
     </form>
 
     <hr>
-
-    <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>-->
-    <script src="js/record.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/main.js"></script>-->
 
 </body>
 
