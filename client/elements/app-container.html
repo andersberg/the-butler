@@ -2,7 +2,20 @@
     <template>
         <style>
             :host {
-                display: block;
+                @apply(--flex-column);
+                padding: 5vw;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            ::content h1 {
+                @apply(--title-text);
+                color: var(--primary-color);
+            }
+
+            ::content p {
+                @apply(--body-text);
+                color: var(--secondary-color);
             }
         </style>
 
