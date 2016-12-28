@@ -1,22 +1,20 @@
 <dom-module id="hello-view">
     <template>
         <style>
-            
+            :host next-button {
+                margin-top: 9rem;
+            }
         </style>
 
-        <h1>Hello!</h1>
+        <h1 title>Hello!</h1>
         <p>I'm the Ape Butler.</p>
-        <p>A voice controlled door phone.</p>
+        <p italic>A voice controlled door phone.</p>
         <next-button>Continue</next-button>
     </template>
 
     <script>
         Polymer({
-            is: 'hello-view',
-
-            properties: {
-                
-            }
+            is: 'hello-view'
         })
     </script>
 </dom-module>
