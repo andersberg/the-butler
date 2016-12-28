@@ -1,0 +1,43 @@
+<dom-module id="butler-app">
+    
+    <template>
+        <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <app-container>
+        <iron-pages selected="0">
+            <hello-view></hello-view>
+            <start-view></start-view>
+            <recording-view></recording-view>
+            <response-view></response-view>
+        </iron-pages>
+    </app-container>
+
+</template>
+
+<script>
+    Polymer({
+
+        is: 'butler-app',
+
+        listeners: {
+            'nextView': '_showNextView',
+            'resetViews': '_resetViews'
+        },
+
+        _showNextView: (event) => {
+            const pages = document.querySelector('iron-pages')
+            pages.selectNext()
+        },
+
+        _resetViews: (event) => {
+            const pages = document.querySelector('iron-pages')
+            pages.selectIndex(0)
+        }
+
+    });
+</script>
+</dom-module>

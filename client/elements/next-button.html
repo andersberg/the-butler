@@ -1,0 +1,30 @@
+<dom-module id="next-button">
+    <template>
+        <style>
+        :host {
+
+        }
+        
+        button {
+            background-color: #68C7BE;
+            border: none;
+            border-radius: 4px;
+            color: #FFFFFF;
+        }
+        </style>
+
+        <button on-tap="handleTap">
+            <content></content>
+        </button>
+    </template>
+    <script>
+        Polymer({
+            is: `next-button`,
+
+            handleTap: function(e) {
+                this.fire('nextView');
+            }
+
+        })
+    </script>
+</dom-module>
