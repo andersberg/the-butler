@@ -1,103 +1,27 @@
 <dom-module id="start-view">
     <template>
         <style>
-            :host {
-                display: block;
+            :host p > span:after {
+                content:"\a";
+                white-space: pre;
             }
-            /*:host[visble] {
-                display: block;
-            }*/
+
+            :host next-button {
+                margin-top: 9rem;
+            }
         </style>
 
-        <h3>Speech Recognition</h3>
+        <p>Please tell me, <span></span>
+        who are you here to see?</p>
 
-        <section id="speech-recognition">
-            <button id="initSpeech">Start Speech Recognition</button>
-            <br>
-            <textarea id="speechOutput" cols="80" rows="5"></textarea>
-        </section>
-        <hr>
-
-        <form>
-            <label for="input">Debug</label>
-            <br>
-            <input id="input" type="text" placeholder="Type here..." value="I am visiting Anders Berg is he in?">
-            <button id="sendBtn">Send</button>
-        </form>
+        <p small italic>Press the button below to start recording.</p>
+        <next-button rec-btn>Press to record</next-button>
+        <action-button contact-human>Contact a human</action-button>
     </template>
 <script>
         Polymer({
             is: 'start-view',
-
-            properties: {
-                visible: {
-                    type: Boolean,
-                    value: false,
-                    reflectToAttribute: true
-                }
-            },
-
-            attached: () => {
-                const sendBtn = document.getElementById(`sendBtn`)
-                const input = document.getElementById(`input`)
-                const initSpeech = document.getElementById(`initSpeech`)
-                const speechOutput = document.getElementById(`speechOutput`)
-                let transcript = null
-
-                function postToServer(message) {
-
-                    let request = new Request(`/api`, {
-                        method: `POST`,
-                        mode: `same-origin`, // alt. `cors`
-                        redirect: `follow`,
-                        body: JSON.stringify({
-                            message: message
-                        }),
-                        headers: new Headers({
-                            "Content-Type": `application/json`
-                        })
-                    })
-
-                    fetch(request)
-                        .then((response) => {
-                            return response.json()
-                        })
-                        .then((response) => {
-                            console.log(`Server: \n` + JSON.stringify(response.real_name))
-                        })
-                }
-
-                function recordSpeech(event) {
-                    let recognition = new webkitSpeechRecognition();
-
-                    // Speech recognition config
-                    recognition.lang = `sv` // Swedish for best recognition of swedish accents
-                    // Consider enabling for richer feedback to user
-                    // recognition.interimResults = true
-
-                    recognition.onresult = (event) => {
-                        console.log(event.results[0][0].transcript)
-
-                        transcript = event.results[0][0].transcript
-                        speechOutput.value = transcript
-
-
-                        postToServer(transcript)
-                    }
-
-                    recognition.start()
-                }
-                initSpeech.addEventListener(`mouseup`, recordSpeech, false)
-
-                // FOR DEBUG
-                function sendPost(event) {
-                    event.preventDefault()
-                    var transcript = input.value
-                    // console.log(`Speech transcipt: \n` + transcript)
-                    postToServer(transcript)
-                }
-                sendBtn.addEventListener(`click`, sendPost, false)
-            }
+            
         })
     </script>
 </dom-module>
