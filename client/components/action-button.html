@@ -1,0 +1,65 @@
+<dom-module id="action-button">
+    <template>
+        <style>
+        :host {
+            @apply(--flex-row);
+            justify-content: center;
+        }
+
+        :host button:focus {
+            outline: none;
+            border: 0.3rem solid black !important;
+        }
+
+        :host[contact-human] button:hover {
+            background-color: var(--light-grey);
+            color: var(--white);
+        }
+
+        :host[contact-human] {
+            position: absolute;
+            right: 5vw;
+            bottom: 5vw;
+        }
+
+        :host[contact-human] button {
+            width: 22rem;
+            height: 4rem;
+            background-color: transparent;
+            border: 0.3rem solid var(--light-grey);
+        }
+
+        :host[contact-human] button ::content {
+            color: var(--light-grey);
+            font-size: var(--font-size-xsmall);
+        }
+        
+        button {
+            flex-grow: 1;
+            height: 7.2rem;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 5rem;
+            color: var(--white);
+        }
+        
+        :host button ::content {
+            @apply(--button-text);
+        }
+        </style>
+
+        <button on-tap="handleTap">
+            <content></content>
+        </button>
+    </template>
+    <script>
+        Polymer({
+            is: `action-button`,
+
+            handleTap: function(event) {
+                this.fire('resetViews');
+            }
+
+        })
+    </script>
+</dom-module>
