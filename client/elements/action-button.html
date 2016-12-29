@@ -34,6 +34,14 @@
             font-size: var(--font-size-xsmall);
         }
         
+        :host[stop-rec] button {
+            width: 22rem;
+            height: 4rem;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: 0.3rem solid var(--secondary-color);
+        }
+
         button {
             flex-grow: 1;
             height: 7.2rem;
@@ -48,18 +56,13 @@
         }
         </style>
 
-        <button on-tap="handleTap">
+        <button>
             <content></content>
         </button>
     </template>
     <script>
         Polymer({
-            is: `action-button`,
-
-            handleTap: function(event) {
-                this.fire('resetViews');
-            }
-
+            is: `action-button`
         })
     </script>
 </dom-module>
