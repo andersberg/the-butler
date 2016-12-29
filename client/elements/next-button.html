@@ -24,7 +24,7 @@
         }
         </style>
 
-        <button on-tap="handleTap">
+        <button >
             <content></content>
         </button>
     </template>
@@ -32,9 +32,6 @@
         Polymer({
             is: `next-button`,
 
-            handleTap: function(e) {
-                this.fire('nextView');
-            }
 
         })
     </script>
