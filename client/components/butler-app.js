@@ -4,62 +4,68 @@ Polymer({
 
     listeners: {
         'nextView': '_showNextView',
+        'previousView': '_showPreviousView',
         'resetViews': '_resetViews',
         'recordSpeech': '_recordSpeech',
-        'recordStop': '_recordStop'
+        'recordStop': '_recordStop',
+        'postToServer': '_postToServer',
+        'showResponse': '_showResponse'
     },
 
     properties: {
         recognition: {
             type: Object
+        },
+        transcript: {
+            type: String,
+            value: null
+        },
+        employee: {
+            type: String
         }
     },
 
     attached: () => {
         this.recognition = new webkitSpeechRecognition()
-
     },
 
     _showNextView: (event) => {
-        const pages = document.querySelector('iron-pages')
-        pages.selectNext()
+        document.querySelector('iron-pages').selectNext()
+    },
+
+    _showPreviousView: (event) => {
+        document.querySelector('iron-pages').selectPrevious()
     },
 
     _resetViews: (event) => {
-        const pages = document.querySelector('iron-pages')
-        pages.selectIndex(0)
+        document.querySelector('iron-pages').selectIndex(0)
     },
 
     _recordStop: () => {
-        this,recognition.stop()
+        recognition.stop()
         console.log(`rec stop`)
     },
 
     // Record Speech Method
     _recordSpeech: (event) => {
         console.log(`recording!`)
-        let transcript = null
-        // let recognition = new webkitSpeechRecognition()
+        
+        // const recognition = new webkitSpeechRecognition()
+        recognition.lang = `sv`
 
-        // Speech recognition config
-        recognition.lang = `sv` // Swedish for best recognition of swedish accents
-        // Consider enabling for richer feedback to user
-        // recognition.interimResults = true
+        recognition.start()
 
         recognition.onresult = (event) => {
-            console.log(event.results[0][0].transcript)
-
-            // transcript = event.results[0][0].transcript
-            // speechOutput.value = transcript
-            _postToServer(transcript)
+            let transcript = event.results[0][0].transcript
+            console.log(transcript)
+            const butlerApp = Polymer.dom(this.root).querySelector(`butler-app`)
+            butlerApp._postToServer(transcript)
         }
-
-        this.recognition.start()
     },
 
     // Send transcript to server
     _postToServer: (message) => {
-
+        console.log(`post to server`)
         // Config request
         let request = new Request(`/api`, {
             method: `POST`,
@@ -79,8 +85,15 @@ Polymer({
                 return response.json()
             })
             .then((response) => {
-                console.log(`Server: \n` + JSON.stringify(response.real_name))
+                console.log(`Server: \n` + response.real_name)
+                Polymer.dom(this.root).querySelector(`butler-app`)._showResponse(response.real_name)
             })
+    },
+
+    _showResponse: function(name) {
+        this.fire(`nextView`)
+        this.employee = name
+        console.log('hello ' + this.employee)
     }
 
 });

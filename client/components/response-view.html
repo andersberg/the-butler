@@ -5,10 +5,17 @@
                 display: block;
             }
         </style>
+        <p>Hello [[name]]</p>
     </template>
     <script>
         Polymer({
-            is: 'response-view'
+            is: 'response-view',
+
+            properties: {
+                name: {
+                    type: String
+                }
+            }
         })
     </script>
 </dom-module>
