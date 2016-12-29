@@ -14,11 +14,15 @@
         <p>I'm listening&hellip;</p>
         
         <pulse-element></pulse-element>
-        <record-speech></record-speech>
+        <action-button stop-rec on-tap="handleTap">Stop Recording</action-button>
     </template>
     <script>
         Polymer({
-            is: 'recording-view'
+            is: `recording-view`,
+
+            handleTap: function(event) {
+                this.fire(`recordStop`)
+            }
         })
     </script>
 </dom-module>

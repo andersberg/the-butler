@@ -9,12 +9,16 @@
         <h1 title>Hello!</h1>
         <p>I'm the Ape Butler.</p>
         <p italic>A voice controlled door phone.</p>
-        <next-button>Continue</next-button>
+        <next-button on-tap="handleTap">Continue</next-button>
     </template>
 
     <script>
         Polymer({
-            is: 'hello-view'
+            is: `hello-view`,
+
+            handleTap: function(event) {
+                this.fire(`nextView`)
+            }
         })
     </script>
 </dom-module>
