@@ -30,7 +30,7 @@ const slackWebClient = new WebClient(slackToken, slackBotName)
 // =============================================================================
 createServer(app)
 app.listen(port)
-console.log('The Butler Server is running on port: ' + port + `\n`)
+console.log('\nThe Butler Server is running on port: ' + port + `\n`)
 
 // BODY PARSER SETUP
 // =============================================================================
@@ -62,8 +62,6 @@ router.post(`/`, (request, response) => {
 
     // API.AI REQUEST
     // =============================================================================
-    // aiRequest(message, app)
-
     let requestBody = {
         "query": [
             message
@@ -83,12 +81,6 @@ router.post(`/`, (request, response) => {
     }).then(function (res) {
         return res.json();
     }).then(function (json) {
-        // aiResponse = json.result.parameters
-        // console.log(`Response from API.ai: \n` + JSON.stringify(aiResponse))
-
-        // let givenname = json.result.parameters.givenname
-        // let lastname = json.result.parameters.lastname
-        // console.log(givenname + ` ` + lastname)
 
         let aiResponse = {
             'givenname': json.result.parameters.givenname,
@@ -98,43 +90,33 @@ router.post(`/`, (request, response) => {
 
         console.log(`API.ai: ` + aiResponse.fullname + `\n`)
 
-        // slackWebClient.chat.postMessage(`@anders`, `Hello from The Butler Bot`, (err, res) => {
-        //     if (err) {
-        //         console.log('Error: ' + err)
-        //     } else {
-        //         console.log('Message sent: ' + res)
-        //     }
-        // })
-
+        // SLACK  API REQUEST
+        // =============================================================================
         slackWebClient.users.list(function (err, users) {
             if (err) {
-                console.log('Error:', err + `\n`);
+                console.log('Error:', err + `\n`)
             } else {
                 console.log('Slack API:')
-                console.log(`Matching: ` + aiResponse.fullname + `\n`);
+                console.log(`Matching: ` + aiResponse.fullname + `\n`)
                 for (var i in users.members) {
                     if (users.members[i].real_name === aiResponse.fullname) {
                         let slackUser = users.members[i]
-                        console.log(`Found match: \n` + slackUser.real_name + `, ID: ` + slackUser.id)
+                        console.log(`Found match: \n` + slackUser.real_name + `, ID: ` + slackUser.id + `\n`)
                         
                         slackWebClient.chat.postMessage(slackUser.id, `Hello ` + slackUser.real_name + `! You have a guest!`, (error, response) => {
                             if (error) {
                                 console.error(`Error: ` + error)
                             } else {
-                                console.log(`Message sent: ` + JSON.stringify(response))
+                                console.log(`Message sent: ` + JSON.stringify(response.ok) + `\n`)
                             }
                         })
-
                         response.json(slackUser)
                         return
                     }
                 }
             }
         });
-
-        // response.json(slackName)
     })
-
 })
 app.use('/api', router)
 
