@@ -1,0 +1,25 @@
+<dom-module id="analyzing-view">
+    <template>
+        <style>
+            :host {
+                @apply(--view-style);
+                align-items: center;
+                justify-content: center;
+            }
+
+            :host ::content {
+                transform: translateY(-6rem);
+            }
+        </style>
+
+        <p body-text italic>I'm thinking...</p>
+
+        <animations-element thinking></animations-element>
+        
+    </template>
+    <script>
+        Polymer({
+            is: `analyzing-view`
+        })
+    </script>
+</dom-module>
