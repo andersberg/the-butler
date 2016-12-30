@@ -21,7 +21,8 @@ Polymer({
             value: null
         },
         employee: {
-            type: String
+            type: String,
+            value: ``
         }
     },
 
@@ -43,21 +44,24 @@ Polymer({
 
     _recordStop: () => {
         recognition.stop()
-        console.log(`rec stop`)
+        // console.log(`rec stop`)
     },
 
     // Record Speech Method
     _recordSpeech: (event) => {
-        console.log(`recording!`)
+        // console.log(`recording!`)
         
-        // const recognition = new webkitSpeechRecognition()
         recognition.lang = `sv`
 
         recognition.start()
 
+        recognition.onaudioend = () => {
+            Polymer.dom(this.root).querySelector(`butler-app`)._showNextView()
+        }
+
         recognition.onresult = (event) => {
             let transcript = event.results[0][0].transcript
-            console.log(transcript)
+            // console.log(transcript)
             const butlerApp = Polymer.dom(this.root).querySelector(`butler-app`)
             butlerApp._postToServer(transcript)
         }
@@ -65,7 +69,7 @@ Polymer({
 
     // Send transcript to server
     _postToServer: (message) => {
-        console.log(`post to server`)
+        // console.log(`post to server`)
         // Config request
         let request = new Request(`/api`, {
             method: `POST`,
