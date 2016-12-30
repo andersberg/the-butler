@@ -4,56 +4,77 @@
         :host {
             @apply(--flex-row);
             justify-content: center;
+            align-items: center;
+        }
+
+        :host button {
+            @apply(--button-text);
+            flex-grow: 1;
+            height: 7rem;
+            padding: 0 2rem;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 5rem;
+            color: var(--white);
+            user-select: none; /* Prevent accidental text selection on touch */
         }
 
         :host button:focus {
+            /* Against good accessibility practice. 
+            Since this is a web app for touch-screens, keyboard navigation will not be used. */
             outline: none;
-            border: 0.3rem solid black !important;
         }
 
+        :host button:active, 
+        :host button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        :host[contact-human] {
+            margin-top: auto;
+        }
+
+        :host[contact-human] button {
+            flex-grow: 0;
+            width: 22rem;
+            height: 4rem;
+            background-color: transparent;
+            color: var(--light-grey);
+            font-size: var(--font-size-xsmall);
+            border: 0.1rem solid var(--light-grey);
+        }
+        
+        :host[contact-human] button:active, 
         :host[contact-human] button:hover {
             background-color: var(--light-grey);
             color: var(--white);
         }
 
-        :host[contact-human] {
-            position: absolute;
-            right: 5vw;
-            bottom: 5vw;
-        }
-
-        :host[contact-human] button {
-            width: 22rem;
-            height: 4rem;
-            background-color: transparent;
-            border: 0.3rem solid var(--light-grey);
-        }
-
-        :host[contact-human] button ::content {
-            color: var(--light-grey);
-            font-size: var(--font-size-xsmall);
+        :host[rec-btn] {
+            margin-top: 9rem;
         }
         
-        :host[stop-rec] button {
-            width: 22rem;
-            height: 4rem;
-            background-color: var(--secondary-color);
-            color: var(--white);
-            border: 0.3rem solid var(--secondary-color);
+        :host[stop-rec] {
+            margin-top: 4rem;
         }
 
-        button {
-            flex-grow: 1;
-            height: 7.2rem;
-            background-color: var(--primary-color);
-            border: none;
-            border-radius: 5rem;
-            color: var(--white);
+        :host[pulse-color] button {
+            animation: pulse-color 3s infinite ease;
+        }
+
+        :host[pulse-bg] button {
+            animation: pulse-bg 3s infinite ease;
+        }
+
+        @keyframes pulse-color {
+            50% { color: var(--primary-color); }
+        }
+
+        @keyframes pulse-bg {
+            50% { background-color: var(--primary-color); }
         }
         
-        :host button ::content {
-            @apply(--button-text);
-        }
         </style>
 
         <button>
