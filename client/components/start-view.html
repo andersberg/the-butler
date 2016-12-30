@@ -1,21 +1,17 @@
 <dom-module id="start-view">
     <template>
         <style>
-            :host p > span:after {
-                content:"\a";
-                white-space: pre;
-            }
-
-            :host next-button {
-                margin-top: 9rem;
+            :host {
+                @apply(--view-style);
             }
         </style>
 
-        <p>Please tell me, <span></span>
+        <p body-text>Please tell me, <span line-break></span>
         who are you here to see?</p>
 
-        <p small italic>Press the button below to start recording.</p>
-        <next-button rec-btn on-tap="handleTap">Press to record</next-button>
+        <p body-text small italic>Press the button below to start recording.</p>
+        <action-button rec-btn on-tap="handleTap">Press to record</action-button>
+        <!-- Contact a human functionality not yet implemented -->
         <action-button contact-human>Contact a human</action-button>
     </template>
 <script>
@@ -26,7 +22,6 @@
                 this.fire(`nextView`)
                 this.fire(`recordSpeech`)
             }
-            
         })
     </script>
 </dom-module>

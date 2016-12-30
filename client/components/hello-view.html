@@ -1,21 +1,22 @@
 <dom-module id="hello-view">
     <template>
         <style>
-            :host next-button {
-                margin-top: 9rem;
+            :host {
+                @apply(--view-style);
             }
         </style>
 
         <h1 title>Hello!</h1>
-        <p>I'm the Ape Butler.</p>
-        <p italic>A voice controlled door phone.</p>
-        <next-button on-tap="handleTap">Continue</next-button>
+        <p body-text>I'm the Ape Butler. <span line-break></span>
+        <span italic>A voice controlled door phone.</span></p>
+        <action-button on-tap="handleTap">Continue</action-button>
+        <!-- Contact a human functionality not yet implemented -->
+        <action-button contact-human>Contact a human</action-button>
     </template>
 
     <script>
         Polymer({
             is: `hello-view`,
-
             handleTap: function(event) {
                 this.fire(`nextView`)
             }

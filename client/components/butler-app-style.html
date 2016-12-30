@@ -2,7 +2,20 @@
     <template>
         <style>
             :host {
+                width: 100vw;
+                height: 100vh;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
                 /* LAYOUT */
+                --flex-only: {
+                    display: flex;
+                    position: relative;
+                    box-sizing: border-box;
+                }
+
                 --flex-row: {
                     display: flex;
                     position: relative;
@@ -17,6 +30,20 @@
                     flex-direction: column;
                 }
 
+                --flex-center: {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                --view-style: {
+                    @apply(--flex-column);
+                    flex-grow: 1;
+                    width: 100%;
+                    height: 100%;
+                    padding: 3rem;
+                }
+                
                 /* COLORS */
                 --primary-color: #68C7BE;
                 --secondary-color: #232730;
@@ -28,7 +55,7 @@
                 --font-weight-normal: 400;
                 --font-weight-bold: 700;
                 --font-size-xsmall: 1.8rem;
-                --font-size-small: 2.6rem;
+                --font-size-small: 2.2rem;
                 --font-size-medium: 3.6rem;
                 --font-size-large: 4.8rem;
                 --font-size-xlarge: 12rem;
@@ -65,8 +92,23 @@
                     letter-spacing: var(--font-letter-spacing);
                     text-transform: uppercase;
                 }
-                
+
+                --pulse-color: {
+                    animation: pulse-color 3s infinite ease;
+                }
+
+                --pulse-bg: {
+                    animation: pulse-bg 3s infinite ease;
+                }
+
+                @keyframes pulse-color {
+                    50% { color: var(--secondary-color); }
+                }
+
+                @keyframes pulse-bg {
+                    50% { background-color: var(--secondary-color); }
+                }
             }
         </style>
-</template>
+    </template>
 </dom-module>
