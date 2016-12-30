@@ -2,18 +2,25 @@
     <template>
         <style>
             :host {
-                display: block;
+                @apply(--view-style);
             }
         </style>
-        <p>Hello [[name]]</p>
+        <h1 heading>Ah!</h1>
+        <p body-text>You are visiting <span name>[[name]]</span>.</p>
+
+        <p body-text italic>I will notify <span name>[[name]]</span> immediately!</p>
+
+        <!-- Contact a human functionality not yet implemented -->
+        <action-button contact-human>Contact a human</action-button>
     </template>
     <script>
         Polymer({
-            is: 'response-view',
+            is: `response-view`,
 
             properties: {
                 name: {
-                    type: String
+                    type: String,
+                    value: `unknown person`
                 }
             }
         })
