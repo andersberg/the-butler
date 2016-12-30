@@ -1,0 +1,67 @@
+<dom-module id="app-container-style">
+    <template>
+        <style>
+        :host {
+            @apply(--flex-row);
+            flex-grow: 1;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::content [title] {
+            @apply(--title-text);
+            color: var(--primary-color);
+        }
+
+        ::content [heading] {
+            @apply(--heading-text);
+            color: var(--primary-color);
+        }
+
+        ::content [body-text] {
+            @apply(--body-text);
+            color: var(--secondary-color);
+            margin-bottom: 1.7rem;
+        }
+
+        ::content [italic] {
+            font-style: italic;
+        }
+        
+        ::content [bold] {
+            font-style: bold;
+        }
+        
+        ::content [small] {
+            font-size: var(--font-size-small);
+        }
+
+        ::content [name] {
+            color: var(--primary-color);
+            font-weight: var(--font-weight-bold);
+        }
+
+        ::content p > span[line-break]:after {
+            content:"\a";
+            white-space: pre;
+        }
+
+        ::content animations-element {
+            width: 20rem;
+            height: 20rem;
+        }
+
+        :host[large-screen] {
+            flex-grow: 0;
+            width: 40rem;
+            height: 65rem;
+            border-radius: 1rem;
+        }
+
+        </style>
+    </template>
+</dom-module>

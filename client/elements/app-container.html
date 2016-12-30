@@ -1,52 +1,12 @@
 <dom-module id="app-container">
+    <link rel="import" href="app-container-style.html">
+    
     <template>
-        <style>
-            :host {
-                @apply(--flex-column);
-                position: absolute;
-                height: 100vh;
-                width: 100vw;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                padding: 5vw;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-            }
-
-            ::content h1[title] {
-                @apply(--title-text);
-                color: var(--primary-color);
-            }
-
-            ::content h1[heading] {
-                @apply(--heading-text);
-                color: var(--primary-color);
-            }
-
-            ::content p {
-                @apply(--body-text);
-                color: var(--secondary-color);
-                margin-bottom: 1.7rem;
-            }
-
-            ::content p[italic] {
-                font-style: italic;
-            }
-            
-            ::content p[bold] {
-                font-style: bold;
-            }
-            
-            ::content p[small] {
-                font-size: var(--font-size-small);
-            }
-
-        </style>
+        <style include="app-container-style"></style>
 
         <content></content>
     </template>
+
     <script>
         Polymer({
             is: `app-container`
