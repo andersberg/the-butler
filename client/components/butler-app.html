@@ -3,23 +3,21 @@
 
     <template>
         <style include="butler-app-style"></style>
-        <style>
-            :host {
-                display: block;
-            }
-        </style>
 
-<app-container>
-    <!--selected="0"-->
-    <iron-pages selected="1">
-        <hello-view></hello-view>
-        <start-view></start-view>
-        <recording-view></recording-view>
-        <response-view name="[[employee]]"></response-view>
-    </iron-pages>
-</app-container>
+        <iron-media-query query="(min-width: 769px)" query-matches="{{large}}"></iron-media-query>
 
-</template>
+        <app-container large-screen$="{{large}}">
+            <!-- Change for debuging different views, standard is selected="0" -->
+            <iron-pages selected="0">
+                <hello-view pulse></hello-view>
+                <start-view></start-view>
+                <recording-view></recording-view>
+                <analyzing-view></analyzing-view>
+                <response-view name="[[employee]]"></response-view>
+            </iron-pages>
+        </app-container>
 
-<script src="butler-app.js"></script>
+    </template>
+
+    <script src="butler-app.js"></script>
 </dom-module>
