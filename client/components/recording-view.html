@@ -2,19 +2,17 @@
     <template>
         <style>
             :host {
-                display: block;
-            }
-
-            pulse-element {
-                /*width: 50vw;*/
-                height: 50vw;
+                @apply(--view-style);
+                align-items: center;
             }
         </style>
 
-        <p>I'm listening&hellip;</p>
+        <p body-text>I'm listening...</p>
         
-        <pulse-element></pulse-element>
+        <animations-element recording></animations-element>
         <action-button stop-rec on-tap="handleTap">Stop Recording</action-button>
+        <!-- Contact a human functionality not yet implemented -->
+        <action-button contact-human>Contact a human</action-button>
     </template>
     <script>
         Polymer({
