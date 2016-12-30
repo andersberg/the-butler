@@ -1,0 +1,91 @@
+<dom-module id="animations-element">
+    <template>
+        <style>
+            :host {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                background-color: var(--secondary-color);
+                border-radius: 50%;
+            }
+
+
+            div[recording], 
+            div[thinking-spinner] {
+                display: none;
+            }
+
+            :host[recording] div[recording], 
+            :host[thinking] div[thinking-spinner] {
+                display: block;
+            }
+
+            /* RECORDING SPINNER */
+            div[recording] > div {
+                background-color: var(--white);
+                width: 0.8rem;
+                height: 10rem;
+                border-radius: 0.8rem;
+                margin: 0.6rem;
+                animation-fill-mode: both;
+                display: inline-block;
+                animation: recording-pulse 1.5s -0.6s infinite cubic-bezier(0.85, 0.25, 0.37, 0.85); 
+            }
+            div[recording] > div:nth-child(2), 
+            div[recording] > div:nth-child(4) {
+                animation-delay: -0.4s !important; 
+            }
+            div[recording] > div:nth-child(1), 
+            div[recording] > div:nth-child(5) {
+                animation-delay: -0.2s !important; 
+            }
+
+            @keyframes recording-pulse {
+                0% 100% {
+                    transform: scaley(1); 
+                } 50% {
+                    transform: scaley(0.4);
+                } 
+            }
+
+            /* THINKING SPINNER */
+            div[thinking-spinner] {
+                width: 6rem;
+                height: 6rem;
+                background-color: var(--white);
+                animation: thinking-spinner 1.2s infinite ease-in-out;
+            }
+
+            @keyframes thinking-spinner {
+                0% { 
+                    transform: perspective(12rem) rotateX(0deg) rotateY(0deg);
+                } 50% { 
+                    transform: perspective(12rem) rotateX(-180.1deg) rotateY(0deg);
+                } 100% { 
+                    transform: perspective(12rem) rotateX(-180deg) rotateY(-179.9deg);
+                }
+            }
+        </style>
+
+        <!-- Animation on recording view -->
+        <div recording>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <!-- Animation for thinking view -->
+        <div thinking-spinner></div>
+
+    </template>
+
+    <script>
+        Polymer({
+            is: `animations-element`
+        })
+    </script>
+</dom-module>
+
