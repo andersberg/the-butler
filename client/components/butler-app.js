@@ -85,7 +85,7 @@ Polymer({
                 return response.json()
             })
             .then((response) => {
-                console.log(`Server: \n` + response.real_name)
+                // console.log(`Server: \n` + response.real_name)
                 Polymer.dom(this.root).querySelector(`butler-app`)._showResponse(response.real_name)
             })
     },
@@ -93,7 +93,12 @@ Polymer({
     _showResponse: function(name) {
         this.fire(`nextView`)
         this.employee = name
-        console.log('hello ' + this.employee)
+
+        // Fake app state reset sent from server.
+        // Waiting for web-socket implementation.
+        setTimeout(function(){
+            Polymer.dom(this.root).querySelector(`butler-app`).fire(`resetViews`)
+        }, 8000);
     }
 
 });
