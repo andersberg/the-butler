@@ -98,11 +98,11 @@ Polymer({
         this.fire(`nextView`)
         this.employee = name
 
-        // Fake app state reset sent from server.
+        // Mock app state reset sent from server.
         // Waiting for web-socket implementation.
         setTimeout(function(){
             Polymer.dom(this.root).querySelector(`butler-app`).fire(`resetViews`)
-        }, 8000);
+        }, 35000); // Long time for demo puropses
     }
 
 });
