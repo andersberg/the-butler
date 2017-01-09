@@ -22,7 +22,8 @@ let message = null
 let aiResponse = null
 
 // Slackbot config
-const slackToken = `xoxb-121768532438-HoUkJhkHhde7Fu2fs7ef2z8z`
+// const slackToken = `xoxb-121768532438-HoUkJhkHhde7Fu2fs7ef2z8z` // Token for theapebutler.slack.com
+const slackToken = `xoxb-125050510578-8aLyAnDT0FS7GiS4MnhhXBXm` // Token for fed15.slack.com
 const slackBotName = `The Ape Butler`
 const slackWebClient = new WebClient(slackToken, slackBotName)
 
