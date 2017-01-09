@@ -101,7 +101,7 @@ router.post(`/`, (request, response) => {
                 for (var i in users.members) {
                     if (users.members[i].real_name === aiResponse.fullname) {
                         let slackUser = users.members[i]
-                        console.log(`Found match: \n` + slackUser.real_name + `, ID: ` + slackUser.id + `\n`)
+                        console.log(`Slack found match: \n` + slackUser.real_name + `, ID: ` + slackUser.id + `\n`)
                         
                         slackWebClient.chat.postMessage(slackUser.id, `Hello ` + slackUser.real_name + `! You have a guest!`, (error, response) => {
                             if (error) {
