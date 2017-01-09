@@ -4,6 +4,7 @@
   "description": "A Master Thesis project exploring new possibilities to open doors by using speech. The project is nicknamed The Ape Butler.",
   "main": "server",
   "scripts": {
+    "postinstall": "bower cache clean && bower install",
     "start": "node --require babel-register --require babel-polyfill server/server.js",
     "dev": "nodemon --require babel-register --require babel-polyfill server/server.js",
     "stop": "killall node | exit 0",
