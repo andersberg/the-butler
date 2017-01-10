@@ -1,7 +1,7 @@
 {
   "name": "the-ape-butler",
   "version": "1.0.0",
-  "description": "A Master Thesis project exploring new possibilities to open doors by using speech. The project is nicknamed The Ape Butler.",
+  "description": "A Degree Project exploring new possibilities to open doors by using speech. The project is nicknamed The Butler.",
   "main": "server",
   "scripts": {
     "postinstall": "bower cache clean && bower install",
