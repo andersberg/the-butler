@@ -16,7 +16,8 @@ const router = new Router()
 // API.AI Config
 // Add security for prod-env
 const postURL = `https://api.api.ai/v1/query?v=20150910`
-const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850`
+// const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850` // Token for the-ape-butler API.ai agent
+const accessToken = `ee88fbf3312c4527bf7168114ee38950` // Token for the-ape-butler API.ai agent
 let sessionId = uuid.v1()
 let message = null
 let aiResponse = null
