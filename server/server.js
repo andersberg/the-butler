@@ -16,15 +16,13 @@ const router = new Router()
 // API.AI Config
 // Add security for prod-env
 const postURL = `https://api.api.ai/v1/query?v=20150910`
-// const accessToken = `fa0f2e28ce9043b1a781e91c2fdaa850` // Token for the-ape-butler API.ai agent
-const accessToken = `ee88fbf3312c4527bf7168114ee38950` // Token for the-fed15-butler API.ai agent
+const accessToken = `<ADD API.AI ACCESS TOKEN>` 
 let sessionId = uuid.v1()
 let message = null
 let aiResponse = null
 
 // Slackbot config
-// const slackToken = `xoxb-121768532438-HoUkJhkHhde7Fu2fs7ef2z8z` // Token for theapebutler.slack.com
-const slackToken = `xoxb-125050510578-8aLyAnDT0FS7GiS4MnhhXBXm` // Token for fed15.slack.com
+const slackToken = `<ADD SLACK API ACCESS TOKEN>`
 const slackBotName = `The Ape Butler`
 const slackWebClient = new WebClient(slackToken, slackBotName)
 

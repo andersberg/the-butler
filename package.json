@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apegroup/the-ape-butler.git"
+    "url": "git+https://github.com/andersberg/the-butler.git"
   },
   "author": "Anders Berg",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/apegroup/the-ape-butler/issues"
+    "url": "https://github.com/andersberg/the-butler/issues"
   },
-  "homepage": "https://github.com/apegroup/the-ape-butler#readme",
+  "homepage": "https://github.com/andersberg/the-butler#readme",
   "dependencies": {
     "@slack/client": "^3.8.1",
     "babel-cli": "^6.18.0",
