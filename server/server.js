@@ -32,7 +32,7 @@ const slackWebClient = new WebClient(slackToken, slackBotName)
 // =============================================================================
 createServer(app)
 app.listen(port)
-console.log('\nThe Butler Server is running on port: ' + port + `\n`)
+console.log('The Butler Server is running on port: ' + port + `\n`)
 
 // BODY PARSER SETUP
 // =============================================================================
@@ -64,7 +64,7 @@ router.post(`/`, (request, response) => {
 
     // API.AI REQUEST
     // =============================================================================
-    let requestBody = {
+    let aiRequest = {
         "query": [
             message
         ],
@@ -75,7 +75,7 @@ router.post(`/`, (request, response) => {
 
     fetch(postURL, {
         method: 'POST',
-        body: JSON.stringify(requestBody),
+        body: JSON.stringify(aiRequest),
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
             'Authorization': 'Bearer ' + accessToken
@@ -90,7 +90,7 @@ router.post(`/`, (request, response) => {
             'fullname': json.result.parameters.givenname + ' ' + json.result.parameters.lastname
         }
 
-        console.log(`API.ai: ` + aiResponse.fullname + `\n`)
+        console.log(`From API.ai: ` + aiResponse.fullname + `\n`)
 
         // SLACK  API REQUEST
         // =============================================================================
@@ -98,20 +98,22 @@ router.post(`/`, (request, response) => {
             if (err) {
                 console.log('Error:', err + `\n`)
             } else {
-                console.log('Slack API:')
-                console.log(`Matching: ` + aiResponse.fullname + `\n`)
+                console.log(`Slack API - Matching: ` + aiResponse.fullname + `\n`)
+                // Look for match among Slack members
                 for (var i in users.members) {
                     if (users.members[i].real_name === aiResponse.fullname) {
                         let slackUser = users.members[i]
-                        console.log(`Slack found match: \n` + slackUser.real_name + `, ID: ` + slackUser.id + `\n`)
+                        console.log(`Slack API - Found match: ` + slackUser.real_name + `, ID: ` + slackUser.id + `\n`)
                         
+                        // Send message to matched Slack user
                         slackWebClient.chat.postMessage(slackUser.id, `Hello ` + slackUser.real_name + `! You have a guest!`, (error, response) => {
                             if (error) {
                                 console.error(`Error: ` + error)
                             } else {
-                                console.log(`Message sent: ` + JSON.stringify(response.ok) + `\n`)
+                                console.log(`Slack API - Message sent: ` + JSON.stringify(response.ok) + `\n`)
                             }
                         })
+                        // Send response back to web client
                         response.json(slackUser)
                         return
                     }
