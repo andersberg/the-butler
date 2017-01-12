@@ -1,4 +1,4 @@
-# The Ape Butler
+# The Butler
 A Degree Project exploring new possibilities to open doors by using speech.
 
 ## Requirements
@@ -58,4 +58,4 @@ Browse to `http://localhost:8080` (if server is running ).
 * `bower_components` - Polymer and related components.
 
 ## License
-The Ape Butler is released under the MIT license. See LICENSE for details.
+The Butler is released under the MIT license. See LICENSE for details.
