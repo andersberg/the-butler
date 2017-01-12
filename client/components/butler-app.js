@@ -62,8 +62,7 @@ Polymer({
         recognition.onresult = (event) => {
             let transcript = event.results[0][0].transcript
             // console.log(transcript)
-            const butlerApp = Polymer.dom(this.root).querySelector(`butler-app`)
-            butlerApp._postToServer(transcript)
+            Polymer.dom(this.root).querySelector(`butler-app`)._postToServer(transcript)
         }
     },
 

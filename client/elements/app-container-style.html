@@ -9,7 +9,6 @@
             width: 100vw;
             background-color: var(--white);
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         ::content [title] {
@@ -45,6 +44,7 @@
             font-weight: var(--font-weight-bold);
         }
 
+        /* For controlled line breaks */
         ::content p > span[line-break]:after {
             content:"\a";
             white-space: pre;

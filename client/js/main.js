@@ -5,8 +5,9 @@ const speechOutput  = document.getElementById(`speechOutput`)
 let transcript      = null
 
 function postToServer(message) {
-    // console.log(`Sending this: \n` + message)
+    // console.log(`Sending this to server: \n` + message)
     
+    // Config request
     let request = new Request(`/api`, {
         method: `POST`,
         mode: `same-origin`, // alt. `cors`

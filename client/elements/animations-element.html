@@ -5,11 +5,9 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-
                 background-color: var(--secondary-color);
                 border-radius: 50%;
             }
-
 
             div[recording], 
             div[thinking-spinner] {
@@ -32,10 +30,12 @@
                 display: inline-block;
                 animation: recording-pulse 1.5s -0.6s infinite cubic-bezier(0.85, 0.25, 0.37, 0.85); 
             }
+
             div[recording] > div:nth-child(2), 
             div[recording] > div:nth-child(4) {
                 animation-delay: -0.4s !important; 
             }
+
             div[recording] > div:nth-child(1), 
             div[recording] > div:nth-child(5) {
                 animation-delay: -0.2s !important; 
