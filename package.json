@@ -1,5 +1,5 @@
 {
-  "name": "the-ape-butler",
+  "name": "the-butler",
   "version": "1.0.0",
   "description": "A Degree Project exploring new possibilities to open doors by using speech. The project is nicknamed The Butler.",
   "main": "server",
@@ -8,9 +8,7 @@
     "start": "node --require babel-register --require babel-polyfill server/server.js",
     "dev": "nodemon --require babel-register --require babel-polyfill server/server.js",
     "stop": "killall node | exit 0",
-    "watch": {},
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "jshint *.js"
   },
   "babel": {
     "presets": [
@@ -47,10 +45,6 @@
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
-    "browser-sync": "^2.18.5",
-    "jshint": "latest",
-    "nodemon": "^1.11.0",
-    "onchange": "^3.2.0",
-    "request": "^2.79.0"
+    "nodemon": "^1.11.0"
   }
 }
