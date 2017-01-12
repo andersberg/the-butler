@@ -1,8 +1,0 @@
-{
-  "name": "the-ape-butler",
-  "short_name": "the-ape-butler",
-  "description": "Web Client for The Ape Butler App",
-  "start_url": "/",
-  "display": "fullscreen",
-  "orientation": "portrait"
-}
